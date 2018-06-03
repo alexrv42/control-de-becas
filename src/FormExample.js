@@ -7,7 +7,6 @@ import {
 	Button,
 	Radio,
 	Container,
-	Divider,
 	Dropdown,
 	DropdownItem,
 	Panel,

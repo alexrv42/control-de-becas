@@ -3,9 +3,15 @@
   background-color: #456dd7;
 }
 
+.App-bar {
+  background-color: #273e7a;
+  z-index: 99 !important;
+  height: 10%;
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+}
 
 .container {
-  border-radius: 5px;
+border-radius: 5px;
 }
 
 .App-logo {
