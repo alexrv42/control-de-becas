@@ -3,6 +3,7 @@ import './App.css';
 import FormExample from "./FormExample";
 import {Appbar} from 'muicss/react';
 import {StickyContainer, Sticky} from 'react-sticky';
+import {Button} from 'muicss/react';
 
 class App extends Component {
 
@@ -28,33 +29,24 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Appbar className='App-bar'>
-					<span style={{fontSize:30, color:'#ffc9a4'}}>Control de Becas</span>
+					<span style={{paddingLeft: 15}}>Control de Becas</span>
 				</Appbar>
-				<StickyContainer >
+				<StickyContainer>
 					<Sticky>
-						{
-							({
-								 style,
-
-								 // the following are also available but unused in this example
-								 isSticky,
-								 wasSticky,
-								 distanceFromTop,
-								 distanceFromBottom,
-								 calculatedHeight
-							 }) => {
-								return (
-									<Appbar className="App-bar" style={style}/>
-								)
-							}
+						{({style, isSticky}) =>
+							<Appbar className="App-bar-sticky" style={style}>
+								<Button color="primary">button</Button>
+								<Button color="primary">button</Button>
+								<Button color="primary">button</Button>
+								<Button color="primary">button</Button>
+								<Button color="primary">button</Button>
+							</Appbar>
 						}
 					</Sticky>
 
-
-
-				<FormExample/>
-				<FormExample/>
+					<FormExample/>
 				</StickyContainer>
+
 			</div>
 		);
 	}
