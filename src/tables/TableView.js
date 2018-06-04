@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import '../App.css';
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
 
@@ -9,48 +8,68 @@ export default class TableView extends Component {
 		super();
 
 		this.state = {
-			tableData: []
+			tableData: [],
+			columns: []
 		}
 	}
 
 
 	toTitleCase(str) {
+		str = str.replace('_', ' ');
 		str = str.toLowerCase().split(' ');
-		for (var i = 0; i < str.length; i++) {
+		for (let i = 0; i < str.length; i++) {
 			str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
 		}
 		str = str.join(' ');
-		str = str.replace('_', ' ');
 		return str;
 	};
 
 
-	columns = [
-		{
-			Header: 'No. Control',
-			accessor: 'NUMERO_CONTROL'
-		},
-		{
-			Header: 'Nombres',
-			accessor: 'NOMBRES' // String-based value accessors!
-		},
-		{
-			Header: 'Apellido Paterno',
-			accessor: 'APELLIDO_PATERNO',
-		},
-		{
-			Header: 'Apellido Materno',
-			accessor: 'APELLIDO_MATERNO'
-		},
-		{
-			Header: 'Especialidad',
-			accessor: 'ESPECIALIDAD'
-		}];
-
 	componentDidMount() {
 		let self = this;
-		console.log('did mount');
 		fetch("https://control-de-becas-api.herokuapp.com/" + this.props.resource + "/columns")
+			.then(function (response) {
+				if (response.status !== 200) {
+					console.log('Looks like there was a problem. Status Code: ' +
+						response.status);
+					return;
+				}
+
+				response.json().then(function (data) {
+					self.createTableHeaders(data);
+					self.retrieveTableData();
+				})
+			}).catch(function (error) {
+			console.log('err: ' + error)
+		})
+	}
+
+	createTableHeaders(data)
+	{
+		let self = this;
+		let tableAccesors = data.map(function (item) {
+			return item['Field'];
+		});
+		let tableHeaders = tableAccesors.map(function (item) {
+			return self.toTitleCase(item);
+		});
+
+		let newColumns = [];
+
+		for (let i = 0; i < data.length; i++) {
+			newColumns[i] = {
+				Header: tableHeaders[i],
+				accessor: tableAccesors[i]
+			}
+		}
+
+		this.setState({columns: newColumns})
+	}
+
+
+	retrieveTableData() {
+		let self = this;
+		fetch("https://control-de-becas-api.herokuapp.com/" + this.props.resource)
 			.then(function (response) {
 				if (response.status !== 200) {
 					console.log('Looks like there was a problem. Status Code: ' +
@@ -69,11 +88,12 @@ export default class TableView extends Component {
 	render() {
 		return (
 			<ReactTable
-				style={{padding: 50}}
+				// style={{padding: 50}}
 				className="-striped -highlight"
 				data={this.state.tableData}
-				columns={this.columns}
+				columns={this.state.columns}
 			/>
 		);
 	}
 }
+
