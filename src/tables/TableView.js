@@ -4,15 +4,17 @@ import "react-table/react-table.css";
 
 export default class TableView extends Component {
 
+	apiUrl = 'https://control-de-becas-api.herokuapp.com/';
+
 	constructor() {
 		super();
 
 		this.state = {
 			tableData: [],
-			columns: []
+			columns: [],
+			loadingTable: true
 		}
 	}
-
 
 	toTitleCase(str) {
 		str = str.replace('_', ' ');
@@ -27,7 +29,7 @@ export default class TableView extends Component {
 
 	componentDidMount() {
 		let self = this;
-		fetch("https://control-de-becas-api.herokuapp.com/" + this.props.resource + "/columns")
+		fetch(this.apiUrl + this.props.resource + "/columns")
 			.then(function (response) {
 				if (response.status !== 200) {
 					console.log('Looks like there was a problem. Status Code: ' +
@@ -44,8 +46,7 @@ export default class TableView extends Component {
 		})
 	}
 
-	createTableHeaders(data)
-	{
+	createTableHeaders(data) {
 		let self = this;
 		let tableAccesors = data.map(function (item) {
 			return item['Field'];
@@ -69,7 +70,7 @@ export default class TableView extends Component {
 
 	retrieveTableData() {
 		let self = this;
-		fetch("https://control-de-becas-api.herokuapp.com/" + this.props.resource)
+		fetch(this.apiUrl + this.props.resource)
 			.then(function (response) {
 				if (response.status !== 200) {
 					console.log('Looks like there was a problem. Status Code: ' +
@@ -78,7 +79,7 @@ export default class TableView extends Component {
 				}
 
 				response.json().then(function (data) {
-					self.setState({tableData: data});
+					self.setState({tableData: data, loadingTable: false});
 				})
 			}).catch(function (error) {
 			console.log('err: ' + error)
@@ -91,6 +92,7 @@ export default class TableView extends Component {
 				// style={{padding: 50}}
 				className="-striped -highlight"
 				data={this.state.tableData}
+				loading = {this.state.loadingTable}
 				columns={this.state.columns}
 			/>
 		);
