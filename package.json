@@ -4,11 +4,13 @@
   "private": true,
   "dependencies": {
     "muicss": "^0.9.39",
+    "rc-checkbox": "^2.1.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-list-view": "^1.0.0",
     "react-scripts": "1.1.4",
-    "react-sticky": "^6.0.2"
+    "react-sticky": "^6.0.2",
+    "react-table": "^6.8.6"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -2,9 +2,15 @@ import React from "react";
 
 export default class NavBarButton extends React.Component
 {
+
+	handleClick()
+	{
+		console.log('click')
+	}
+
 	render() {
 		return (
-			<div onClick={console.log('touch')}  style={{height:20, width:20, backgroundColor:'#505980'}} />
+			<div onClick={this.handleClick}  className='App-bar-btn' />
 		);
 	}
 }
