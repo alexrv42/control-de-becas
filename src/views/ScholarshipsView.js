@@ -10,10 +10,10 @@ export default class ScholarshipsView extends Component {
 
 	render() {
 		return (
-			<AppContainer>
+			<div>
 				<TableView resource='becas'/>
 				<FormExample/>
-			</AppContainer>
+			</div>
 		);
 	}
 }

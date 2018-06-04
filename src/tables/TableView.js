@@ -92,8 +92,50 @@ export default class TableView extends Component {
 				// style={{padding: 50}}
 				className="-striped -highlight"
 				data={this.state.tableData}
-				loading = {this.state.loadingTable}
 				columns={this.state.columns}
+				loading = {this.state.loadingTable}
+				minRows={5}
+				defaultPageSize = {10}
+				filterable= {true}
+				pageText= 'Página'
+				previousText= 'Siguiente'
+				nextText= 'Anterior'
+				loadingText='Cargando...'
+				ofText= 'de'
+				rowsText= 'filas'
+				column= {{
+					// Renderers
+					Cell: undefined,
+					Header: undefined,
+					Footer: undefined,
+					Aggregated: undefined,
+					Pivot: undefined,
+					PivotValue: undefined,
+					Expander: undefined,
+					Filter: undefined,
+					// Standard options
+					sortable: undefined, // use table default
+					resizable: undefined, // use table default
+					filterable: undefined, // use table default
+					show: true,
+					minWidth: 120,
+					// Cells only
+					className: '',
+					style: {},
+					getProps: () => ({}),
+					// Headers only
+					headerClassName: '',
+					headerStyle: {},
+					getHeaderProps: () => ({}),
+					// Footers only
+					footerClassName: '',
+					footerStyle: {},
+					getFooterProps: () => ({}),
+					filterAll: false,
+					filterMethod: undefined,
+					sortMethod: undefined,
+					defaultSortDesc: undefined,
+				}}
 			/>
 		);
 	}

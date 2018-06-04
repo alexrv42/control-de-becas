@@ -10,10 +10,10 @@ export default class StatesView extends Component {
 
 	render() {
 		return (
-			<AppContainer>
+			<div>
 				<TableView resource='estados'/>
 				<FormExample/>
-			</AppContainer>
+			</div>
 		);
 	}
 }

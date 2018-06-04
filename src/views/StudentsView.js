@@ -10,10 +10,10 @@ class Home extends Component {
 
 	render() {
 		return (
-			<AppContainer>
+			<div>
 				<TableView resource='alumnos'/>
 				<FormExample/>
-			</AppContainer>
+			</div>
 		);
 	}
 }

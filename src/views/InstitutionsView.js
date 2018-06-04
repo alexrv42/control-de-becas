@@ -10,10 +10,10 @@ export default class InstitutionsView extends Component {
 
 	render() {
 		return (
-			<AppContainer>
+			<div>
 				<TableView resource='instituciones'/>
 				<FormExample/>
-			</AppContainer>
+			</div>
 		);
 	}
 }
