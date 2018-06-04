@@ -39,7 +39,6 @@ export default class StudentTable extends Component {
 
 	componentDidMount() {
 		let self = this;
-		console.log('did mount');
 		fetch("https://control-de-becas-api.herokuapp.com/alumnos")
 			.then(function (response) {
 				if (response.status !== 200) {
