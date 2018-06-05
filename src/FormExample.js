@@ -8,7 +8,7 @@ import {
 	Dropdown,
 	DropdownItem,
 	Select,
-	Option
+	Option, Panel
 } from "muicss/react";
 import Checkbox from 'rc-checkbox';
 
@@ -16,7 +16,6 @@ import Checkbox from 'rc-checkbox';
 export default class FormExample extends React.Component {
 	render() {
 		return (
-
 			<Form style={{flex: 1, justifyContent: 'flex-start'}}>
 				<legend>Title</legend>
 				<div>

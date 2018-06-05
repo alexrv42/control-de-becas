@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import ReactTable from 'react-table'
+import ReactTable from 'react-table';
 import "react-table/react-table.css";
+import 'react-fab/dist/main.scss';
+import {Button} from "muicss/react";
+import apiUrl from '../util/ApiUrl';
 
 export default class TableView extends Component {
 
-	apiUrl = 'https://control-de-becas-api.herokuapp.com/';
 
 	constructor() {
 		super();
@@ -26,10 +28,15 @@ export default class TableView extends Component {
 		return str;
 	};
 
+	handleFab()
+	{
+		console.log('faaaaaaaaaaaab');
+	}
+
 
 	componentDidMount() {
 		let self = this;
-		fetch(this.apiUrl + this.props.resource + "/columns")
+		fetch(apiUrl + "/" + this.props.resource + "/columns")
 			.then(function (response) {
 				if (response.status !== 200) {
 					console.log('Looks like there was a problem. Status Code: ' +
@@ -70,7 +77,7 @@ export default class TableView extends Component {
 
 	retrieveTableData() {
 		let self = this;
-		fetch(this.apiUrl + this.props.resource)
+		fetch(apiUrl + "/" + this.props.resource)
 			.then(function (response) {
 				if (response.status !== 200) {
 					console.log('Looks like there was a problem. Status Code: ' +
@@ -88,55 +95,59 @@ export default class TableView extends Component {
 
 	render() {
 		return (
-			<ReactTable
-				// style={{padding: 50}}
-				className="-striped -highlight"
-				data={this.state.tableData}
-				columns={this.state.columns}
-				loading = {this.state.loadingTable}
-				minRows={5}
-				defaultPageSize = {10}
-				filterable= {true}
-				pageText= 'Página'
-				previousText= 'Siguiente'
-				nextText= 'Anterior'
-				loadingText='Cargando...'
-				ofText= 'de'
-				rowsText= 'filas'
-				column= {{
-					// Renderers
-					Cell: undefined,
-					Header: undefined,
-					Footer: undefined,
-					Aggregated: undefined,
-					Pivot: undefined,
-					PivotValue: undefined,
-					Expander: undefined,
-					Filter: undefined,
-					// Standard options
-					sortable: undefined, // use table default
-					resizable: undefined, // use table default
-					filterable: undefined, // use table default
-					show: true,
-					minWidth: 120,
-					// Cells only
-					className: '',
-					style: {},
-					getProps: () => ({}),
-					// Headers only
-					headerClassName: '',
-					headerStyle: {},
-					getHeaderProps: () => ({}),
-					// Footers only
-					footerClassName: '',
-					footerStyle: {},
-					getFooterProps: () => ({}),
-					filterAll: false,
-					filterMethod: undefined,
-					sortMethod: undefined,
-					defaultSortDesc: undefined,
-				}}
-			/>
+			<div>
+				<ReactTable
+					style={{marginBottom: 35}}
+					className="-striped -highlight"
+					data={this.state.tableData}
+					columns={this.state.columns}
+					loading={this.state.loadingTable}
+					minRows={5}
+					defaultPageSize={10}
+					filterable={true}
+					pageText='Página'
+					previousText='Siguiente'
+					nextText='Anterior'
+					loadingText='Cargando...'
+					ofText='de'
+					rowsText='filas'
+					column={{
+						// Renderers
+						Cell: undefined,
+						Header: undefined,
+						Footer: undefined,
+						Aggregated: undefined,
+						Pivot: undefined,
+						PivotValue: undefined,
+						Expander: undefined,
+						Filter: undefined,
+						// Standard options
+						sortable: undefined, // use table default
+						resizable: undefined, // use table default
+						filterable: undefined, // use table default
+						show: true,
+						minWidth: 120,
+						// Cells only
+						className: '',
+						style: {},
+						getProps: () => ({}),
+						// Headers only
+						headerClassName: '',
+						headerStyle: {},
+						getHeaderProps: () => ({}),
+						// Footers only
+						footerClassName: '',
+						footerStyle: {},
+						getFooterProps: () => ({}),
+						filterAll: false,
+						filterMethod: undefined,
+						sortMethod: undefined,
+						defaultSortDesc: undefined,
+					}}
+				/>
+				{/*<Button onClick={this.props.handleAdd} color='primary'>Add new</Button>*/}
+
+			</div>
 		);
 	}
 }

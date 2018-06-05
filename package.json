@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment": "^2.22.2",
     "muicss": "^0.9.39",
+    "prop-types": "^15.6.1",
     "rc-checkbox": "^2.1.5",
     "react": "^16.4.0",
+    "react-datepicker": "^1.5.0",
     "react-dom": "^16.4.0",
+    "react-fab": "^1.1.1",
     "react-list-view": "^1.0.0",
+    "react-mfb": "^0.6.0",
     "react-scripts": "1.1.4",
     "react-sticky": "^6.0.2",
     "react-table": "^6.8.6"
@@ -17,5 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.2"
   }
 }

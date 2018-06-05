@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
 import '../App.css';
-import FormExample from "../FormExample";
-import App from "../components/App";
 import "react-table/react-table.css";
 import TableView from "../tables/TableView";
+import StudentForm from "../components/StudentForm";
 
 
 class Home extends Component {
 
+	handleAdd() {
+		console.log('students')
+	}
+
 	render() {
 		return (
 			<div>
-				<TableView resource='alumnos'/>
-				<FormExample/>
+				<TableView handleAdd={this.handleAdd} resource='alumnos'/>
+				<StudentForm/>
 			</div>
 		);
 	}

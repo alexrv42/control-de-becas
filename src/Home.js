@@ -5,13 +5,12 @@ import App from "./components/App";
 import "react-table/react-table.css";
 
 
-class Home extends Component {
+export default class Home extends Component {
 
 	render() {
 		return (
-				<FormExample/>
+				<FormExample />
 		);
 	}
 }
 
-export default Home;
