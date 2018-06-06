@@ -7,6 +7,8 @@ import apiUrl from '../util/ApiUrl';
 
 export default class TableView extends Component {
 
+	primaryKeyColumn;
+
 
 	constructor() {
 		super();
@@ -29,9 +31,9 @@ export default class TableView extends Component {
 		return str;
 	};
 
-	handleFab(value)
+	deleteRow(value)
 	{
-		console.log(JSON.stringify(value));
+		console.log('Row to delete: ' + value.value);
 	}
 
 
@@ -57,6 +59,12 @@ export default class TableView extends Component {
 	createTableHeaders(data) {
 		let self = this;
 		let tableAccesors = data.map(function (item) {
+
+			// to be able to find this specific row
+			if (item["Key"] === "PRI")
+			{
+				self.primaryKeyColumn = item["Field"];
+			}
 			return item['Field'];
 		});
 		let tableHeaders = tableAccesors.map(function (item) {
@@ -74,8 +82,8 @@ export default class TableView extends Component {
 
 		newColumns.push({
 			id: 'edit',
-			accessor: '16051867',
-			Cell: ({value}) => (<Button color='danger' onClick={this.handleFab({value})}>Borrar</Button>)
+			accessor: this.primaryKeyColumn,
+			Cell: ({value}) => (<Button color='danger' onClick={()=> this.deleteRow({value})}>Borrar</Button>)
 		});
 
 		this.setState({columns: newColumns})
@@ -109,8 +117,7 @@ export default class TableView extends Component {
 					data={this.state.tableData}
 					columns={this.state.columns}
 					loading={this.state.loadingTable}
-					minRows={5}
-					defaultPageSize={10}
+					defaultPageSize={5}
 					filterable={true}
 					pageText='Página'
 					previousText='Siguiente'

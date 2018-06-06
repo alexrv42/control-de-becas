@@ -20,7 +20,7 @@ export default class StudentForm extends React.Component {
 			NOMBRES: '',
 			APELLIDO_PATERNO: '',
 			APELLIDO_MATERNO: '',
-			ESPECIALIDAD: '',
+			ESPECIALIDAD: 'Industrial',
 			FECHA_NACIMIENTO: moment(),
 			CORREO: '',
 			TELEFONO: '',
@@ -103,6 +103,7 @@ export default class StudentForm extends React.Component {
 					</Select>
 					<label>Fecha de nacimiento</label>
 					<DatePicker
+						className='date-input'
 						selected={this.state.FECHA_NACIMIENTO}
 						onChange={this.handleDateChange}
 					/>
