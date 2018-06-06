@@ -4,11 +4,11 @@ import "react-table/react-table.css";
 import 'react-fab/dist/main.scss';
 import {Button} from "muicss/react";
 import apiUrl from '../util/ApiUrl';
+import _ from 'lodash';
 
 export default class TableView extends Component {
 
 	primaryKeyColumn;
-
 
 	constructor() {
 		super();
@@ -16,7 +16,8 @@ export default class TableView extends Component {
 		this.state = {
 			tableData: [],
 			columns: [],
-			loadingTable: true
+			loadingTable: true,
+			selfUpdate: false
 		}
 
 	}
@@ -31,9 +32,41 @@ export default class TableView extends Component {
 		return str;
 	};
 
-	deleteRow(value)
-	{
-		console.log('Row to delete: ' + value.value);
+	deleteRow(value) {
+		const rowId = value.value;
+		const self = this;
+		console.log('Row to delete: ' + rowId);
+		fetch(apiUrl + '/' + this.props.resource + '/' + rowId, {
+			method: 'delete',
+			// headers: {
+			// 	'Accept': 'application/json',
+			// 	'Content-Type': 'application/json'
+			// },
+		})
+			.then(res => res.json())
+			.then(res => {
+				console.log(res);
+				self.removeRowFromStateData(rowId);
+			});
+	}
+
+	removeRowFromStateData(rowId) {
+		let newData = _.clone(this.state.tableData);
+		for (let i = 0; i < newData.length; i++) {
+			if (rowId === newData[i][this.primaryKeyColumn]) {
+				console.log('rowId: ' + rowId);
+				console.log('newData[i][this.primaryKeyColumn]: ' + newData[i][this.primaryKeyColumn]);
+				console.log('index of item:' + i);
+				newData.splice(i, 1);
+
+
+				this.setState({
+					tableData: newData,
+					selfUpdate: false
+				});
+				break
+			}
+		}
 	}
 
 
@@ -61,8 +94,7 @@ export default class TableView extends Component {
 		let tableAccesors = data.map(function (item) {
 
 			// to be able to find this specific row
-			if (item["Key"] === "PRI")
-			{
+			if (item["Key"] === "PRI") {
 				self.primaryKeyColumn = item["Field"];
 			}
 			return item['Field'];
@@ -83,10 +115,10 @@ export default class TableView extends Component {
 		newColumns.push({
 			id: 'edit',
 			accessor: this.primaryKeyColumn,
-			Cell: ({value}) => (<Button color='danger' onClick={()=> this.deleteRow({value})}>Borrar</Button>)
+			Cell: ({value}) => (<Button color='danger' onClick={() => this.deleteRow({value})}>Borrar</Button>)
 		});
 
-		this.setState({columns: newColumns})
+		this.setState({columns: newColumns, selfUpdate: false})
 	}
 
 
@@ -101,12 +133,43 @@ export default class TableView extends Component {
 				}
 
 				response.json().then(function (data) {
-					self.setState({tableData: data, loadingTable: false});
+					self.setState({tableData: data, loadingTable: false, selfUpdate: false});
 				})
 			}).catch(function (error) {
 			console.log('err: ' + error)
 		})
 	}
+
+	componentDidUpdate() {
+		if (this.state.selfUpdate) return;
+
+		let dataInTable = _.clone(this.state.tableData);
+
+		const self = this;
+		if (self.props.addedObject !== undefined) {
+
+			let clone = _.clone(self.props.addedObject);
+
+			for (let property in clone) {
+				if (clone.hasOwnProperty(property)) {
+					clone[property] = clone[property] + '';
+				}
+			}
+
+			console.log('defined, pushing: ');
+			console.log(clone);
+
+			dataInTable.push(clone);
+			this.setState({
+				selfUpdate: true,
+				tableData: dataInTable
+			});
+		}
+		else {
+			console.log('undefined, not pushing');
+		}
+	}
+
 
 	render() {
 		return (
@@ -117,7 +180,7 @@ export default class TableView extends Component {
 					data={this.state.tableData}
 					columns={this.state.columns}
 					loading={this.state.loadingTable}
-					defaultPageSize={5}
+					defaultPageSize={10}
 					filterable={true}
 					pageText='Página'
 					previousText='Siguiente'
@@ -159,7 +222,6 @@ export default class TableView extends Component {
 						defaultSortDesc: undefined,
 					}}
 				/>
-				{/*<Button onClick={this.props.handleAdd} color='primary'>Add new</Button>*/}
 
 			</div>
 		);

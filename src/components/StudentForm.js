@@ -48,8 +48,6 @@ export default class StudentForm extends React.Component {
 	}
 
 	handleAdd() {
-		console.log('Posting: ' + JSON.stringify(this.state));
-		console.log('Api: ' + JSON.stringify(apiUrl + '/alumnos'));
 		fetch(apiUrl + '/alumnos', {
 			method: 'post',
 			headers: {
@@ -59,6 +57,8 @@ export default class StudentForm extends React.Component {
 			body: JSON.stringify(this.state)
 		}).then(res => res.json())
 			.then(res => console.log(res));
+
+		this.props.onSubmit(this.state);
 
 		this.setState({
 			NUMERO_CONTROL: '',
@@ -74,6 +74,7 @@ export default class StudentForm extends React.Component {
 			MUNICIPIO: '',
 			ESTADO: ''
 		});
+
 		window.scrollTo(0, 0);
 	}
 
