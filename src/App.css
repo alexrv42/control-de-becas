@@ -1,8 +1,25 @@
 .App {
 	text-align: left;
 	background-color: #eeeeee;
-	font-family: 'Cabin', sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
+}
 
+/* for the date picker only */
+html {
+	font-size: 17px;
+}
+
+input {
+	font-size:15px;
+	/*padding:10px 10px 10px 5px;*/
+	display:block;
+	width:150px;
+	border:none;
+	border-bottom:1px solid #c1c1c1;
+}
+
+.editbtn {
+	height: 20px;
 }
 
 .App-bar {

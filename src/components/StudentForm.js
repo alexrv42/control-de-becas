@@ -106,7 +106,7 @@ export default class StudentForm extends React.Component {
 						selected={this.state.FECHA_NACIMIENTO}
 						onChange={this.handleDateChange}
 					/>
-					<Input onChange={this.handleChange} name='CORREO' label="Correo"/>
+					<Input style={{marginTop:20}} onChange={this.handleChange} name='CORREO' label="Correo"/>
 					<Input onChange={this.handleChange} name='TELEFONO' label="Teléfono"/>
 					<Input onChange={this.handleChange} name='DIRECCION' label="Dirección"/>
 					<Input onChange={this.handleChange} name='COLONIA' label="Colonia"/>

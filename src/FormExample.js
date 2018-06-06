@@ -8,7 +8,7 @@ import {
 	Dropdown,
 	DropdownItem,
 	Select,
-	Option, Panel
+	Option,
 } from "muicss/react";
 import Checkbox from 'rc-checkbox';
 

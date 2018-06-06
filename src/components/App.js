@@ -9,7 +9,6 @@ import ScholarshipHoldersView from "../views/ScholarshipHoldersView";
 import ScholarshipsView from "../views/ScholarshipsView";
 import InstitutionsView from "../views/InstitutionsView";
 import StatesView from "../views/StatesView";
-import FormExample from "../FormExample";
 
 export default class App extends Component {
 

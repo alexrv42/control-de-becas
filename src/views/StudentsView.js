@@ -5,7 +5,7 @@ import TableView from "../tables/TableView";
 import StudentForm from "../components/StudentForm";
 
 
-class Home extends Component {
+export default class StudentsView extends Component {
 
 	handleAdd() {
 		console.log('students')
@@ -21,4 +21,3 @@ class Home extends Component {
 	}
 }
 
-export default Home;

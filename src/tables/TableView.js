@@ -16,6 +16,7 @@ export default class TableView extends Component {
 			columns: [],
 			loadingTable: true
 		}
+
 	}
 
 	toTitleCase(str) {
@@ -28,9 +29,9 @@ export default class TableView extends Component {
 		return str;
 	};
 
-	handleFab()
+	handleFab(value)
 	{
-		console.log('faaaaaaaaaaaab');
+		console.log(JSON.stringify(value));
 	}
 
 
@@ -70,6 +71,12 @@ export default class TableView extends Component {
 				accessor: tableAccesors[i]
 			}
 		}
+
+		newColumns.push({
+			id: 'edit',
+			accessor: '16051867',
+			Cell: ({value}) => (<Button color='danger' onClick={this.handleFab({value})}>Borrar</Button>)
+		});
 
 		this.setState({columns: newColumns})
 	}
