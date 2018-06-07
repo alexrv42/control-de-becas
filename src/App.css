@@ -18,6 +18,17 @@
 	color: #fffef6;
 }
 
+.app-footer {
+	background-color: #273e7a;
+	z-index: 5 !important;
+	font-family: 'Titillium Web', sans-serif;
+	height: 100px;
+	line-height: 100px;
+	display: flex;
+	justify-content:center;
+	align-content:center;
+	margin-top: 200px;
+}
 
 .footer {
 	padding-left: 15px;
@@ -38,15 +49,15 @@
 
 
 .App-bar-btn {
-	background-color: #3453a3;
+	background-color: #3460a6;
 	/*z-index: 99 !important;*/
-	height: 30px;
-	flex-direction: row;
-	align-items: center;
-	display:inline-block;
-	width: 120px;
-	border-radius: 5px;
-	margin-left: 10px;
+	/*height: 30px;*/
+	/*flex-direction: row;*/
+	/*align-items: center;*/
+	/*display:inline-block;*/
+	width: 180px;
+	/*border-radius: 5px;*/
+	/*margin-left: 10px;*/
 }
 
 

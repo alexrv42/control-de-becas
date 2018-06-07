@@ -3,6 +3,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 export default class FormCommons {
 
+	static timeOut;
+
 	static postData(resource, data) {
 		console.log('posting data');
 		fetch(apiUrl + '/' + resource, {
@@ -18,7 +20,17 @@ export default class FormCommons {
 
 	static submitAnimation()
 	{
-		window.scrollTo(0, 0);
+		// while (document.body.scrollTop !== 0) {
+		// 	this.timeOut = setTimeout(()=> {
+		// 		if (document.body.scrollTop === 0)
+		// 		{
+		// 			clearTimeout(this.timeOut)
+		// 		}
+		// 		window.scrollBy(0, -50)
+		// 	}, 10);
+		// }
+
+		window.scrollTo(0,0);
 	}
 
 }
