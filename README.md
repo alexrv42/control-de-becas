@@ -1,4 +1,6 @@
 ### Alumno: Alejandro Alberto Ramírez Vilchis
+### Clase: Programación Web, 17:00 - 18:00
+----------------------------------------------------------
 # Aplicación Control de Becas
 
 ¡Bienvenido, profesor! Este es el repositorio en donde están alojados los archivos de mi proyecto,
