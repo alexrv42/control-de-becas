@@ -11,4 +11,4 @@ Dentro del directorio src/ podrá encontrar archivos Javascript que utilizan la 
 ReactJS para el desarrollo de la interfaz de usuario, eliminando la necesidad de editar archivos HTML.
 Del mismo modo, utilicé Node JS para la administración de paquetes y librerías.
 
-[Ir al sitio] (https://control-de-becas.herokuapp.com/)
+[Ir al sitio](https://control-de-becas.herokuapp.com/)
