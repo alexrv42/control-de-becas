@@ -1,4 +1,3 @@
-import React from 'react';
 import apiUrl from '../util/ApiUrl';
 import 'react-datepicker/dist/react-datepicker.css';
 

@@ -18,6 +18,14 @@
 	color: #fffef6;
 }
 
+
+.footer {
+	padding-left: 15px;
+	color: #fffef6;
+	font-size: 15px;
+}
+
+
 .App-bar-sticky {
 	background-color: #273e7a;
 	align-items: center;
@@ -57,10 +65,16 @@ html {
 	width:150px;
 	border:none;
 	border-bottom:1px solid #c1c1c1;
+	margin-bottom: 18px;
 }
 
-.editbtn {
-	height: 20px;
+.delete-btn {
+	/*padding-bottom: 2px;*/
+	height: 30px;
+	/*text-align-all: center;*/
+	/*align-content: center;*/
+	/*justify-items: center;*/
+	/*align-items: center;*/
 }
 
 
@@ -90,6 +104,11 @@ html {
 	font-size: large;
 }
 
+.form-header {
+	display: block;
+	font-size: 25px;
+	margin-bottom: 20px;
+}
 
 
 @keyframes App-logo-spin {

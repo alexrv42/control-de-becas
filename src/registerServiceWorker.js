@@ -103,7 +103,7 @@ function checkValidServiceWorker(swUrl) {
     })
     .catch(() => {
       console.log(
-        'No internet connection found. StudentsView is running in offline mode.'
+        'No internet connection found. ScholarshipHoldersView is running in offline mode.'
       );
     });
 }

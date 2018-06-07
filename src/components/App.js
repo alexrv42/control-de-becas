@@ -45,7 +45,10 @@ export default class App extends Component {
 						</Panel>
 					</Container>
 				</StickyContainer>
-
+				<Appbar className='App-bar'>
+					<p className='footer'>Desarrollador: Alejandro Alberto Ramírez Vilchis</p>
+					<p className='footer'>Supervisor: Jorge Arturo Zapata Reyna</p>
+				</Appbar>
 			</div>
 		);
 	}

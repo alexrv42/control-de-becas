@@ -5,6 +5,7 @@ import 'react-fab/dist/main.scss';
 import {Button} from "muicss/react";
 import apiUrl from '../util/ApiUrl';
 import _ from 'lodash';
+import moment from "moment";
 
 export default class TableView extends Component {
 
@@ -17,7 +18,6 @@ export default class TableView extends Component {
 			tableData: [],
 			columns: [],
 			loadingTable: true,
-			selfUpdate: false
 		}
 
 	}
@@ -61,10 +61,9 @@ export default class TableView extends Component {
 
 
 				this.setState({
-					tableData: newData,
-					selfUpdate: false
+					tableData: newData
 				});
-				break
+				break;
 			}
 		}
 	}
@@ -115,10 +114,10 @@ export default class TableView extends Component {
 		newColumns.push({
 			id: 'edit',
 			accessor: this.primaryKeyColumn,
-			Cell: ({value}) => (<Button color='danger' onClick={() => this.deleteRow({value})}>Borrar</Button>)
+			Cell: ({value}) => (<Button  color='danger' onClick={() => this.deleteRow({value})}>Borrar</Button>)
 		});
 
-		this.setState({columns: newColumns, selfUpdate: false})
+		this.setState({columns: newColumns})
 	}
 
 
@@ -133,35 +132,38 @@ export default class TableView extends Component {
 				}
 
 				response.json().then(function (data) {
-					self.setState({tableData: data, loadingTable: false, selfUpdate: false});
+					self.setState({tableData: data, loadingTable: false});
 				})
 			}).catch(function (error) {
 			console.log('err: ' + error)
 		})
 	}
 
-	componentDidUpdate() {
-		if (this.state.selfUpdate) return;
+	displayNewData(object) {
+		console.log('component did update');
 
 		let dataInTable = _.clone(this.state.tableData);
 
-		const self = this;
-		if (self.props.addedObject !== undefined) {
-
-			let clone = _.clone(self.props.addedObject);
+		if (object !== undefined) {
+			console.log('addedObject not undefined');
+			let clone = _.clone(object);
 
 			for (let property in clone) {
 				if (clone.hasOwnProperty(property)) {
+					if(moment.isMoment(clone[property])) // ponerle formato si es un objeto moment
+					{
+						console.log('There is an instance of moment');
+						clone[property] = clone[property].format();
+					}
 					clone[property] = clone[property] + '';
 				}
 			}
 
-			console.log('defined, pushing: ');
+			console.log('defined, showing in table: ');
 			console.log(clone);
 
 			dataInTable.push(clone);
 			this.setState({
-				selfUpdate: true,
 				tableData: dataInTable
 			});
 		}
@@ -174,6 +176,7 @@ export default class TableView extends Component {
 	render() {
 		return (
 			<div>
+				<span className='form-header'>{this.toTitleCase(this.props.resource)}</span>
 				<ReactTable
 					style={{marginBottom: 35}}
 					className="-striped -highlight"
