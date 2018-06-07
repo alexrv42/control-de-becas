@@ -9,13 +9,16 @@ import ScholarshipHoldersView from "../views/ScholarshipHoldersView";
 import ScholarshipsView from "../views/ScholarshipsView";
 import InstitutionsView from "../views/InstitutionsView";
 import StatesView from "../views/StatesView";
+import StudentForm from "../forms/StudentForm";
 
 export default class App extends Component {
+
+	mainPage = <StudentsView/>;
 
 	constructor() {
 		super();
 		this.state = {
-			view: <Home/>
+			view: this.mainPage
 		}
 	}
 
@@ -25,7 +28,7 @@ export default class App extends Component {
 		return (
 			<div className='App'>
 				<Appbar className='App-bar'>
-					<span onClick={() => this.setState({view: <Home/>})} className='header'>Control de Becas</span>
+					<span onClick={() => this.setState({view: this.mainPage})} className='header'>Control de Becas</span>
 				</Appbar>
 				<StickyContainer>
 					<Sticky>
