@@ -43,23 +43,35 @@
 	padding-left: 15px;
 	z-index: 99 !important;
 	height: 50px;
-	box-shadow: 0 6px 4px 0 rgba(114, 114, 114, 0.2);
+}
+
+.App-bar-sticky-shadow {
+	background-color: #273e7a;
+	align-items: center;
+	padding-left: 15px;
+	z-index: 99 !important;
+	height: 50px;
+	box-shadow: 0 6px 4px 0 rgba(114, 114, 114, 0.4);
 }
 
 
 
 .App-bar-btn {
 	background-color: #3460a6;
-	/*z-index: 99 !important;*/
-	/*height: 30px;*/
-	/*flex-direction: row;*/
-	/*align-items: center;*/
-	/*display:inline-block;*/
-	width: 180px;
-	/*border-radius: 5px;*/
-	/*margin-left: 10px;*/
+	width: 160px;
 }
 
+
+.App-bar-btn-mobile {
+	background-color: #3460a6;
+	width: 160px;
+	/*width: 70px;*/
+
+	/*align-content: center;*/
+	/*text-align: center;*/
+	/*font-size: 10px;*/
+	/*font-weight: bold;*/
+}
 
 
 
